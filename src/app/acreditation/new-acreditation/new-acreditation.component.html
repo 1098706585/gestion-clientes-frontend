@@ -1,0 +1,265 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">        
+        <div style="margin-left: 43%; margin-top: 2%;">
+            <br>
+             <!-- <h4 class="card-title"> <b>  A continuacion se podra crear un nuevo ciente al oprimir el boton New:  </b> </h4> -->
+             <h4 class="card-title"> <b>   </b> </h4>
+           </div>
+
+           <div class="form-group col-sm-3" style="margin-top: -5px; margin-left: -20%;">
+                <button class="boto btn btn-info btn-xs"(click)="openXL(contenido,2,null)">New</button>
+           </div>
+           <br>
+           <br>
+          <input Input style="margin-bottom: 1.6%; text-transform: uppercase; "(value)="this.userDigitado.value" (keydown.enter)="onSearchUser($event.target.value)">
+          <button class="boto btn btn-info btn-xs" style="margin-bottom: 1.9%; margin-left: 1%;"> <== Escriba el id y oprima Enter</button>
+        <div style="margin-left: 20%; margin-bottom: -35%;">
+        
+        </div>
+          <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-info card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">assignment</i>
+                  </div>
+                  <h4 class="card-title">Detalle Cliente</h4>
+                </div>
+                  <div class="card-body">
+                      <div class="toolbar">
+                          <!--        Here you can write extra buttons/actions for the toolbar              -->
+                      </div>
+                      <div class="table-responsive">
+                        <div fxLayout fxLayoutAlign="center center">
+                          <!-- <mat-form-field >
+                            <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Buscar">
+                          </mat-form-field> -->
+                        </div>
+                      <table mat-table [dataSource]="dataSource2" matSort class="mat-elevation-z8 table table-striped table-no-bordered table-hover" cellspacing="0">
+                          
+                          <!-- Name Column -->
+                              <ng-container matColumnDef="idsolicitud">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header style=" font-weight: bold;"> Shared Key </th>
+                                  <td mat-cell *matCellDef="let element" > {{element.sharedKey}} </td>
+                              </ng-container>
+
+                              <ng-container matColumnDef="fechasolicitud">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header style=" font-weight: bold;"> Business ID </th>
+                                <td mat-cell *matCellDef="let element" > {{element.name}} </td>
+                              </ng-container>
+
+                              <ng-container matColumnDef="fecharecibido" >
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header style=" font-weight: bold; margin-right: 30px;"> E-mail </th>
+                                <td mat-cell *matCellDef="let element" style="margin-right: 30px;" > {{element.email}} </td>
+                              </ng-container>
+                              
+                              <!-- Weight Column -->
+                              <ng-container matColumnDef="identificacion">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header style=" font-weight: bold;"> Phone </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+                              </ng-container>
+                          
+                              <ng-container matColumnDef="nombres">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header style=" font-weight: bold;"> Data Added </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.startDate}} </td>
+                              </ng-container>
+
+                              <ng-container matColumnDef="Actions3">
+                                <th mat-header-cell *matHeaderCellDef style=" font-weight: bold;">Editar</th>
+
+                                <td mat-cell *matCellDef="let element" >
+                                  <!-- <button class="btn btn-primary mat-raised-button" style="height: 36px;" [routerLink]="['/acreditation/viewAcreditation', element.identificacion,element.idsolicitud,this.id]"><mat-icon matSuffix style="margin-left: -20px;">get_app</mat-icon> Editar</button> -->
+                                </td>
+                              </ng-container>
+                                         
+                          <ng-container matColumnDef="loading">
+                              <!-- <td mat-footer-cell *matFooterCellDef> 
+                                  Cargando Datos... 
+                              </td> -->
+                              <td mat-footer-cell *matFooterCellDef>                                 
+                            </td>
+                          </ng-container>
+                      
+                          <ng-container matColumnDef="noData">
+                              <!-- <td mat-footer-cell *matFooterCellDef> 
+                                  Cargando Datos... 
+                              </td> -->
+                              <td mat-footer-cell *matFooterCellDef>                                  
+                            </td>
+                          </ng-container>
+                          
+                          <tr mat-header-row *matHeaderRowDef="dataTitle"></tr>
+                          <tr mat-row *matRowDef="let row; columns: dataTitle;">
+                              (click)="onRowClicked(row)">
+                          </tr>
+                          <tr mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':dataSource!=null}"></tr>
+                          <tr mat-footer-row *matFooterRowDef="['noData']"[ngClass]="{'hide':!(dataSource!=null  && dataSource.data.length==0)}"></tr>
+                      </table>
+                      
+                      <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+                      </div>
+                  </div>
+                  <!-- end content-->
+                  <ng-template #contenido let-modal>
+                    <div class="modal-header">
+                      <h4 *ngIf="mostrarBoton==true"class="modal-title">Create New Client</h4>
+                      <h4 *ngIf="mostrarBoton==false"class="modal-title">Client Information</h4>
+                      <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="contenedor">
+                        <mat-form-field>
+                          <input matInput [(ngModel)]="name" type="any" placeholder="Ingrese el nombre">
+                        </mat-form-field>
+                      
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="phone" type="any" placeholder="Ingrese el número de telefono">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                          <input matInput [(ngModel)]="email" type="any" placeholder="Ingrese el email">
+                        </mat-form-field>
+                      
+                        <mat-form-field>
+                            <input matInput [(ngModel)]="startDate" type="any" placeholder="Ingrese la fecha inicial">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                          <input matInput [(ngModel)]="endDate" type="any" placeholder="Ingrese la fecha final">
+                        </mat-form-field>                        
+                        <button mat-raised-button color="primary" (click)="crearCliente()" *ngIf="mostrarBoton==true">Crear</button>                                               
+                      </div>
+                    </div>                   
+                  </ng-template>
+              </div>
+              <!--  end card  -->
+          </div>
+          <!-- end col-md-12 -->
+
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header card-header-info card-header-icon">
+                <div class="card-icon">
+                  <i class="material-icons">assignment</i>
+                </div>
+                <h4 class="card-title">Total Clientes</h4>
+              </div>
+                <div class="card-body">
+                    <div class="toolbar">
+                        <!--        Here you can write extra buttons/actions for the toolbar              -->
+                    </div>
+                    <div class="table-responsive">
+                      <div fxLayout fxLayoutAlign="center center">
+                        <mat-form-field >
+                          <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Buscar">
+                        </mat-form-field>
+                      </div>
+                    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table table-striped table-no-bordered table-hover" cellspacing="0">
+                        
+                        <!-- Name Column -->
+                            <ng-container matColumnDef="idsolicitud">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header style=" font-weight: bold;"> Shared Key </th>
+                                <td mat-cell *matCellDef="let element" > {{element.sharedKey}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="fechasolicitud">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header style=" font-weight: bold;"> Business ID </th>
+                              <td mat-cell *matCellDef="let element" > {{element.name}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="fecharecibido" >
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header style=" font-weight: bold; margin-right: 30px;"> E-mail </th>
+                              <td mat-cell *matCellDef="let element" style="margin-right: 30px;" > {{element.email}} </td>
+                            </ng-container>
+                            
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="identificacion">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header style=" font-weight: bold;"> Phone </th>
+                                <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+                            </ng-container>
+                        
+                            <ng-container matColumnDef="nombres">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header style=" font-weight: bold;"> Data Added </th>
+                                <td mat-cell *matCellDef="let element"> {{element.startDate}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="Actions3">
+                              <th mat-header-cell *matHeaderCellDef style=" font-weight: bold;">Editar</th>
+
+                              <td mat-cell *matCellDef="let element" >
+                                <!-- <button class="btn btn-primary mat-raised-button" style="height: 36px;" [routerLink]="['/acreditation/viewAcreditation', element.identificacion,element.idsolicitud,this.id]"><mat-icon matSuffix style="margin-left: -20px;">get_app</mat-icon> Editar</button> -->
+                              </td>
+                            </ng-container>
+                                       
+                        <ng-container matColumnDef="loading">
+                            <!-- <td mat-footer-cell *matFooterCellDef> 
+                                Cargando Datos... 
+                            </td> -->
+                            <td mat-footer-cell *matFooterCellDef>                                 
+                          </td>
+                        </ng-container>
+                    
+                        <ng-container matColumnDef="noData">
+                            <!-- <td mat-footer-cell *matFooterCellDef> 
+                                Cargando Datos... 
+                            </td> -->
+                            <td mat-footer-cell *matFooterCellDef>                                  
+                          </td>
+                        </ng-container>
+                        
+                        <tr mat-header-row *matHeaderRowDef="dataTitle"></tr>
+                        <tr mat-row *matRowDef="let row; columns: dataTitle;">
+                            (click)="onRowClicked(row)">
+                        </tr>
+                        <tr mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':dataSource!=null}"></tr>
+                        <tr mat-footer-row *matFooterRowDef="['noData']"[ngClass]="{'hide':!(dataSource!=null  && dataSource.data.length==0)}"></tr>
+                    </table>
+                    
+                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                    </div>
+                </div>
+                <!-- end content-->
+                <ng-template #contenido let-modal>
+                  <div class="modal-header">
+                    <h4 *ngIf="mostrarBoton==true"class="modal-title">Create New Client</h4>
+                    <h4 *ngIf="mostrarBoton==false"class="modal-title">Client Information</h4>
+                    <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="contenedor">
+                      <mat-form-field>
+                        <input matInput [(ngModel)]="name" type="any" placeholder="Ingrese el nombre">
+                      </mat-form-field>
+                    
+                      <mat-form-field>
+                          <input matInput [(ngModel)]="phone" type="any" placeholder="Ingrese el número de telefono">
+                      </mat-form-field>
+
+                      <mat-form-field>
+                        <input matInput [(ngModel)]="email" type="any" placeholder="Ingrese el email">
+                      </mat-form-field>
+                    
+                      <mat-form-field>
+                          <input matInput [(ngModel)]="startDate" type="any" placeholder="Ingrese la fecha inicial">
+                      </mat-form-field>
+
+                      <mat-form-field>
+                        <input matInput [(ngModel)]="endDate" type="any" placeholder="Ingrese la fecha final">
+                      </mat-form-field>                        
+                      <button mat-raised-button color="primary" (click)="crearCliente()" *ngIf="mostrarBoton==true">Crear</button>                                               
+                    </div>
+                  </div>                   
+                </ng-template>
+            </div>
+            <!--  end card  -->
+        </div>
+        <!-- end col-md-12 -->
+      </div>
+      <!-- end row -->
+      
+  </div>
+</div>

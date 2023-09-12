@@ -1,0 +1,276 @@
+<div class="main-content">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 offset-md-1" style="background-color:lightyellow; font-size: 14px !important; text-align: justify !important; border-radius: 5px 5px 5px 5px;">
+        <p style="font-size: 12px;"><br>
+          En esta aplicación usted podrá solicitar el certificado único de acreditación como veterano, por favor ir al menú acreditación y pulsar el botón nueva acreditación, debe diligenciar en su totalidad el formulario correspondiente. <strong style="font-weight: 600;">Nota: </strong>Los titulares de datos personales tienen el derecho de conocer, actualizar, rectificar o suprimir frente a los responsables del tratamiento, la información recolectada en las bases de datos o archivos, en los términos establecidos en las normas vigentes y en la Política de Tratamiento de Datos Personales, las cuales podrán ser consultadas en cualquier momento en el siguiente enlace: <strong style="font-weight: 600;"> https://procolombia.co/politica-de-tratamiento-de-datos-personales</strong>
+        </p>
+      </div>
+    </div>
+  </div><br>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <div class="card">
+          <div class="card-header card-header-info card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">face</i>
+            </div>
+            <h4 class="card-title">Datos básicos del veterano</h4>
+          </div>
+
+          <div class="card-body">
+            <div class="container">
+              <form>
+                <div class="row">
+                  <!-- TIPO IDENTIFICACION -->
+                  <div class="col-md-5">
+                    <div class="row">
+                      <label class="col-sm-6 col-form-label text-center">T. identificación:</label>
+                      <div class="col-sm-6">
+                        <mat-form-field class="has-label text-center">
+                          <input matInput [value]="this.usu.tipo_IDENTIFICACION" disabled>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- NUMERO IDENTIFICACION -->
+                  <div class="col-md-7">
+                    <div class="row">
+                      <label class="col-sm-6 col-form-label text-center">Número de identificación:</label>
+                      <div class="col-sm-6">
+                        <mat-form-field class="has-label text-center">
+                          <input matInput [value]="this.usu.cedula" disabled>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- PRIMER NOMBRE -->
+                  <div class="col-md-6">
+                    <div class="row">
+                      <label class="col-sm-5 col-form-label text-center">Primer nombre:</label>
+                      <div class="col-sm-7">
+                        <mat-form-field class="has-label text-center">
+                          <input matInput [value]="this.usu.primer_NOMBRE" disabled>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- SEGUNDO NOMBRE -->
+                  <div class="col-md-6">
+                    <div class="row">
+                      <label class="col-sm-5 col-form-label text-center">Segundo nombre:</label>
+                      <div class="col-sm-7">
+                        <mat-form-field class="has-label text-center">
+                          <input matInput [value]="this.usu.segundo_NOMBRE" disabled>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- PRIMER APELLIDO -->
+                  <div class="col-md-6">
+                    <div class="row">
+                      <label class="col-sm-5 col-form-label text-center">Primer apellido:</label>
+                      <div class="col-sm-7">
+                        <mat-form-field class="has-label text-center">
+                          <input matInput [value]="this.usu.primer_APELLIDO" disabled>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- SEGUNDO APELLIDO -->
+                  <div class="col-md-6">
+                    <div class="row">
+                      <label class="col-sm-5 col-form-label text-center">Segundo apellido:</label>
+                      <div class="col-sm-7">
+                        <mat-form-field class="has-label text-center">
+                          <input matInput [value]="this.usu.segundo_APELLIDO" disabled>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- PRIMER CORREO -->
+                  <div class="col-md-10">
+                    <div class="row">
+                      <label class="col-sm-3 col-form-label text-center">Correo principal:</label>
+                      <div class="col-sm-9">
+                        <mat-form-field class="has-label text-center">
+                          <input matInput [value]="this.usu.correo_PRINCIPAL" disabled>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- SEGUNDO CORREO -->
+                  <div class="col-md-10">
+                    <div class="row">
+                      <label class="col-sm-3 col-form-label text-center">Correo secundario:</label>
+                      <div class="col-sm-9">
+                        <mat-form-field class="has-label text-center">
+                          <input matInput [value]="this.usu.segundo_CORREO" disabled>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="card-footer">
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row justify-content-end">
+            <div class="col-2">
+              <button mat-raised-button class="btn btn-minDe" data-toggle="modal" data-target="#myModalIntro">Actualizar datos</button>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ACTUALIZACION DE DATOS BASICOS DEL VETERANO -->
+  <div class="modal fade" id="myModalIntro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: -50px;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h3 class="modal-title">Actualización de datos básicos: </h3>
+          
+          <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <i class="material-icons">clear</i>
+          </button> 
+        </div>
+
+        <div class="modal-body">
+          <div class="container" style="font-size: 13px;">
+            <form [formGroup]="actualizar"><br>
+              <!-- TIPO IDENTIFICACION -->
+              <div class="row">
+                <label class="col-sm-4 col-form-label text-left">T. identificación:</label>
+                <div class="col-sm-8">
+                  <mat-form-field class="has-label text-center">
+                    <mat-select formControlName="tIdentidad" [ngClass]="{'is-invalid': submitted && f.tIdentidad.errors}" required>
+                      <mat-option disabled selected value="">...</mat-option>
+                      <mat-option value="CC">CC</mat-option>
+                      <mat-option value="RC">RC</mat-option>
+                      <mat-option value="CE">CE</mat-option>
+                      <mat-option value="TI">TI</mat-option>
+                    </mat-select>
+
+                    <mat-error *ngIf="tIdentidad.hasError('required')">
+                      Debe tomar una <strong>opción</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <!-- NUMERO IDENTIFICACION -->
+              <div class="row">
+                <label class="col-sm-4 col-form-label text-left">Núm. identificación:</label>
+                <div class="col-sm-8">
+                  <mat-form-field class="has-label text-center">
+                    <input matInput formControlName="cedula" [ngClass]="{'is-invalid': submitted && f.tIdentidad.errors}">  
+                    <mat-error *ngIf="cedula.hasError('required')">
+                      El número de cedula es <strong>requerido</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <!-- PRIMER NOMBRE -->
+              <div class="row">
+                <label class="col-sm-4 col-form-label text-left">Primer nombre:</label>
+                <div class="col-sm-8">
+                  <mat-form-field class="has-label text-center">
+                    <input matInput formControlName="pNombre" [ngClass]="{'is-invalid': submitted && f.tIdentidad.errors}">
+                    <mat-error *ngIf="pNombre.hasError('required')">
+                      El primer nombre es <strong>requerido</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+                
+              <!-- SEGUNDO NOMBRE -->
+              <div class="row">
+                <label class="col-sm-4 col-form-label text-left">Segundo nombre:</label>
+                <div class="col-sm-8">
+                  <mat-form-field class="has-label text-center">
+                    <input matInput formControlName="sNombre">
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <!-- PRIMER APELLIDO -->
+              <div class="row">
+                <label class="col-sm-4 col-form-label text-left">Primer apellido:</label>
+                <div class="col-sm-8">
+                  <mat-form-field class="has-label text-center">
+                    <input matInput formControlName="pApellido" [ngClass]="{'is-invalid': submitted && f.pApellido.errors}">
+                    <mat-error *ngIf="pApellido.hasError('required')">
+                        El primer apellido es <strong>requerido</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <!-- SEGUNDO APELLIDO -->
+              <div class="row">
+                <label class="col-sm-4 col-form-label text-left">Segundo apellido:</label>
+                <div class="col-sm-8">
+                  <mat-form-field class="has-label text-center">
+                    <input matInput formControlName="sApellido">
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <!-- PRIMER CORREO -->
+              <div class="row">
+                <label class="col-sm-4 col-form-label text-left">Correo principal:</label>
+                <div class="col-sm-8">
+                  <mat-form-field class="has-label text-center">
+                    <input matInput formControlName="cPrincipal" [ngClass]="{'is-invalid': submitted && f.cPrincipal.errors}">
+                    <mat-error *ngIf="f.cPrincipal.hasError('email')">
+                        Por favor agregue un correo <strong>valido</strong>
+                    </mat-error>
+                    <mat-error *ngIf="f.cPrincipal.hasError('required')">
+                        El correo es <strong>requerido</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <!-- SEGUNDO CORREO -->
+              <div class="row">
+                <label class="col-sm-4 col-form-label text-left">Correo secundario:</label>
+                <div class="col-sm-8">
+                  <mat-form-field class="has-label text-center">
+                    <input matInput formControlName="cSecundario" [ngClass]="{'is-invalid': submitted && f.cSecundario.errors}">
+                    <mat-error *ngIf="f.cSecundario.hasError('email')">
+                        Por favor agregue un correo <strong>valido</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button mat-raised-button type="button" class="btn btn-minDe" (click)="guardar()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

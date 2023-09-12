@@ -1,0 +1,22 @@
+table {
+    width: 100%;
+}
+
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+.hide{
+    display: none;
+}
+
+/* mat-table */
+mat-footer-row mat-footer-cell{
+    justify-content: center;
+    font-style: italic;
+}
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    margin:1rem auto;
+    max-width: 600px;
+}  
