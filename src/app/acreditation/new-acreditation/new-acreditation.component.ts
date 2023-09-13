@@ -61,51 +61,54 @@ export class NewAcreditationComponent implements OnInit, AfterViewInit {
 
   public crearCliente() {
     
-    Swal({
-      title: 'Se enviará la información',
-      text: '¿Esta seguro que desea continuar?',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Si, deseo continuar!',
-      cancelButtonText: 'No, cancelar',
-      confirmButtonClass: "btn btn-success",
-      cancelButtonClass: "btn btn-danger",
-      buttonsStyling: false
-    }).then((result) => {
-      if (result.value) {
-        this.crud.getCrearClientes(1,this.name,this.phone,this.email,this.startDate,this.endDate)
-        .subscribe(
-          (data: any) => {            
-            if (data.value == "-1" ) {
-              Swal({
-                title: 'Atención',
-                text: data.message,
-                //text: this.response.message,
-                type: 'error',
-                confirmButtonClass: "btn btn-info",
-                buttonsStyling: false
-              }).catch(Swal.noop);
-              this.modal.dismissAll();
-            }else{
-              Swal({
-                title: "Registro exitoso",
-                text: "Se informa que su registro fue satisfactorio.",
-                buttonsStyling: false,
-                confirmButtonClass: "btn btn-success",
-                type: "success"
-                
-              }).catch(Swal.noop);
-              //this._router.navigate(['/security/login']);
-              //this._router.navigate(['/sidebar/sidebar']);
-              //this._router.navigate(['/acreditation/newAcreditation']);
-              this.getAllRequest();         
-              this.modal.dismissAll();
-            }            
-          }
-        );
-      }
-    });
-    
+    const expression: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;    
+    const result: boolean = expression.test(this.email); // true
+    console.log('e-mail is ' + (result ? 'correct' : 'incorrect'));
+
+    if ((result ? 'correct' : 'incorrect') == "incorrect" ) {
+       alert('Por favor ingresa un correo válido!')       
+    }else{
+      Swal({
+        title: 'Se enviará la información',
+        text: '¿Esta seguro que desea continuar?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, deseo continuar!',
+        cancelButtonText: 'No, cancelar',
+        confirmButtonClass: "btn btn-success",
+        cancelButtonClass: "btn btn-danger",
+        buttonsStyling: false
+      }).then((result) => {
+        if (result.value) {
+          this.crud.getCrearClientes(1,this.name,this.phone,this.email,this.startDate,this.endDate)
+          .subscribe(
+            (data: any) => {            
+              if (data.value == "-1" ) {
+                Swal({
+                  title: 'Atención',
+                  text: data.message,
+                  type: 'error',
+                  confirmButtonClass: "btn btn-info",
+                  buttonsStyling: false
+                }).catch(Swal.noop);
+                this.modal.dismissAll();
+              }else{
+                Swal({
+                  title: "Registro exitoso",
+                  text: "Se informa que su registro fue satisfactorio.",
+                  buttonsStyling: false,
+                  confirmButtonClass: "btn btn-success",
+                  type: "success"
+                  
+                }).catch(Swal.noop);              
+                this.getAllRequest();         
+                this.modal.dismissAll();
+              }            
+            }
+          );
+        }
+      });
+    }
   }
 
   constructor(private crud: CrudService,private ip: IpService,private tokenStorage: TokenStorageService, private _router1: ActivatedRoute,private modal: NgbModal,private _router: Router) { 
